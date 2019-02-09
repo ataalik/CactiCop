@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Base.gd" type="Script" id=1]
 [ext_resource path="res://Pictures/Temp/water_cursor.png" type="Texture" id=2]
 [ext_resource path="res://Pictures/Temp/fertilizer_cursor.png" type="Texture" id=3]
-[ext_resource path="res://Pictures/Temp/hang_cursor.png" type="Texture" id=4]
+[ext_resource path="res://Pictures/Temp/hand_cursor.png" type="Texture" id=4]
 [ext_resource path="res://Pictures/Temp/Grass.png" type="Texture" id=5]
 [ext_resource path="res://Pictures/Temp/Table.png" type="Texture" id=6]
 [ext_resource path="res://Pictures/Temp/Layer #2.png" type="Texture" id=7]
 [ext_resource path="res://Pictures/Temp/WaterAndFertilizer.png" type="Texture" id=8]
 [ext_resource path="res://Pot.tscn" type="PackedScene" id=9]
+[ext_resource path="res://shipping_area.tscn" type="PackedScene" id=10]
 
 [node name="Base" type="Node2D"]
 script = ExtResource( 1 )
@@ -45,44 +46,21 @@ margin_bottom = 29.0757
 
 [node name="FertilizerButton" type="Button" parent="LowerHUD/Buttons"]
 margin_left = -31.1882
-margin_top = -6.28278
+margin_top = -7.05652
 margin_right = 41.8118
-margin_bottom = 28.7172
+margin_bottom = 27.9435
 
 [node name="Items" type="Node2D" parent="."]
 
 [node name="Pot" parent="Items" instance=ExtResource( 9 )]
 position = Vector2( 224.931, 160.665 )
 
-[node name="Pot2" parent="Items" instance=ExtResource( 9 )]
-position = Vector2( 180.609, 212.742 )
+[node name="Node2D" type="Node2D" parent="."]
 
-[node name="Pot3" parent="Items" instance=ExtResource( 9 )]
-position = Vector2( 305.817, 161.773 )
+[node name="real_cacti" parent="Node2D" instance=ExtResource( 10 )]
 
-[node name="Pot8" parent="Items" instance=ExtResource( 9 )]
-position = Vector2( 383.38, 159.557 )
-
-[node name="Pot9" parent="Items" instance=ExtResource( 9 )]
-position = Vector2( 462.05, 159.557 )
-
-[node name="Pot10" parent="Items" instance=ExtResource( 9 )]
-position = Vector2( 548.476, 160.665 )
-
-[node name="Pot4" parent="Items" instance=ExtResource( 9 )]
-position = Vector2( 339.058, 214.958 )
-
-[node name="Pot5" parent="Items" instance=ExtResource( 9 )]
-position = Vector2( 270.36, 211.634 )
-
-[node name="Pot6" parent="Items" instance=ExtResource( 9 )]
-position = Vector2( 419.945, 217.174 )
-
-[node name="Pot7" parent="Items" instance=ExtResource( 9 )]
-position = Vector2( 498.615, 218.282 )
-
-[node name="Pot11" parent="Items" instance=ExtResource( 9 )]
-position = Vector2( 578.393, 216.066 )
+[node name="fake_cacti" parent="Node2D" instance=ExtResource( 10 )]
+position = Vector2( 724.19, 181.799 )
 
 [connection signal="pressed" from="LowerHUD/Buttons/WateringButton" to="." method="_on_WateringButton_pressed"]
 [connection signal="pressed" from="LowerHUD/Buttons/FertilizerButton" to="." method="_on_FertilizerButton_pressed"]

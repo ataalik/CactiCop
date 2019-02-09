@@ -49,7 +49,3 @@ func _on_FertilizerButton_pressed():
 	print("Fertilizer mode")
 	current_mode = MODES.fertilizer_mode
 	pass # Replace with function body.
-
-
-func _on_Pot_input_event(viewport, event, shape_idx):
-	pass # Replace with function body.
