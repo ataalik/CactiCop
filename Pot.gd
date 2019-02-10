@@ -44,6 +44,14 @@ var current_stage
 var mouse_pressed
 var dragging
 
+# Sprite related vars
+export var cactus_types = ["OneArm", "ThreeArm", "TwoArm"] # Should change if we add more arms
+var hat_types_no
+var cactus_sprite
+var hat_sprite
+var current_hands
+var current_hat
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Cactus.modulate = cactusColor
@@ -55,7 +63,24 @@ func _ready():
 	current_growth = 0
 	current_health = max_health
 	current_stage = STAGES.seedling
+
+	cactus_sprite = get_node("Cactus")
 	
+
+	hat_sprite = get_node("Hat")
+	hat_types_no = hat_sprite.get_sprite_frames().get_frame_count(hat_sprite.get_animation())
+
+
+	current_hands = get_random(cactus_types.size())
+	cactus_sprite.set_animation(cactus_types[current_hands])
+	cactus_sprite.set_frame(current_stage)
+
+	current_hat = get_random(hat_types_no)
+	hat_sprite.set_frame(current_hat)
+	hat_sprite.set_visible(false)
+
+	print(current_hands)
+	print(current_hat)
 	mouse_pressed = false
 	dragging = false
 	pass
@@ -110,7 +135,6 @@ func _input_event(viewport, event, shape_idx):
 			fertilize()
 		elif(root.current_mode == root.MODES.hand_mode):
 			# Debug
-			print(event.is_pressed())
 			print("Water time: " + String(water_time) + "\nNeeds water: " + String(needs_water))
 			print("Fertilizer time: " + String(fertilizer_time) + "\nNeeds fert: " + String(needs_fert))
 			print("Current health: " + String(current_health))
@@ -141,6 +165,9 @@ func fertilize():
 func grow():
 	# TODO change sprite
 	current_stage = current_stage + 1
+	cactus_sprite.set_frame(current_stage)
+	if(current_stage == STAGES.mature):
+		hat_sprite.set_visible(true)
 	current_growth = 0
 
 func ship(area_name):
@@ -152,3 +179,8 @@ func _on_Pot_area_entered(area):
 	if(area.name == "real_cacti" || area.name == "fake_cacti"):
 		ship(area.name)
 	pass # Replace with function body.
+
+
+func get_random(NR): #Randomize a Dir-number
+    randomize()
+    return randi()%NR

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Base.gd" type="Script" id=1]
 [ext_resource path="res://Pictures/WateringCan.png" type="Texture" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Pictures/LowerHud.png" type="Texture" id=8]
 [ext_resource path="res://Pot.tscn" type="PackedScene" id=9]
 [ext_resource path="res://shipping_area.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Pictures/Box1.png" type="Texture" id=11]
 
 [node name="Base" type="Node2D"]
 script = ExtResource( 1 )
@@ -61,6 +60,7 @@ margin_right = -11.537
 margin_bottom = 24.4877
 
 [node name="Items" type="Node2D" parent="."]
+z_index = 1
 
 [node name="Pot" parent="Items" instance=ExtResource( 9 )]
 position = Vector2( 209.494, 143.758 )
@@ -68,33 +68,12 @@ position = Vector2( 209.494, 143.758 )
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="real_cacti" parent="Node2D" instance=ExtResource( 10 )]
-
-[node name="Box" type="Sprite" parent="Node2D/real_cacti"]
-position = Vector2( 0.735092, -69.8337 )
-texture = ExtResource( 11 )
-
-[node name="Label" type="Label" parent="Node2D/real_cacti/Box"]
-margin_left = -45.5757
-margin_top = 44.8406
-margin_right = 47.4243
-margin_bottom = 92.8406
-text = "Normal Cactus
-
-"
+position = Vector2( 60.9379, 134.933 )
+box_label = "Real Cactus"
 
 [node name="fake_cacti" parent="Node2D" instance=ExtResource( 10 )]
-position = Vector2( 713.665, 172.314 )
-
-[node name="Box2" type="Sprite" parent="Node2D/fake_cacti"]
-position = Vector2( 0.249023, -65.2049 )
-texture = ExtResource( 11 )
-
-[node name="Label" type="Label" parent="Node2D/fake_cacti/Box2"]
-margin_left = -35.2844
-margin_top = 45.5757
-margin_right = 39.7156
-margin_bottom = 59.5757
-text = "Evil Cactus"
+position = Vector2( 711.675, 136.489 )
+box_label = "Fake Cactus"
 
 [connection signal="pressed" from="LowerHUD/Buttons/WateringButton" to="." method="_on_WateringButton_pressed"]
 [connection signal="pressed" from="LowerHUD/Buttons/FertilizerButton" to="." method="_on_FertilizerButton_pressed"]
