@@ -1,21 +1,27 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Base.gd" type="Script" id=1]
-[ext_resource path="res://Pictures/WateringCan.png" type="Texture" id=2]
-[ext_resource path="res://Pictures/Fertilizer.png" type="Texture" id=3]
+[ext_resource path="res://Pictures/WateringCanArrow.png" type="Texture" id=2]
+[ext_resource path="res://Pictures/FertilizerArrow.png" type="Texture" id=3]
 [ext_resource path="res://Pictures/Temp/hand_cursor.png" type="Texture" id=4]
 [ext_resource path="res://Pictures/Temp/Grass.png" type="Texture" id=5]
 [ext_resource path="res://Pictures/Table.png" type="Texture" id=6]
 [ext_resource path="res://Pictures/Temp/Layer #2.png" type="Texture" id=7]
 [ext_resource path="res://Pictures/LowerHud.png" type="Texture" id=8]
-[ext_resource path="res://Pot.tscn" type="PackedScene" id=9]
-[ext_resource path="res://shipping_area.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Pictures/Fertilizer.png" type="Texture" id=9]
+[ext_resource path="res://Pictures/WateringCan.png" type="Texture" id=10]
+[ext_resource path="res://Pot.tscn" type="PackedScene" id=11]
+[ext_resource path="res://shipping_area.tscn" type="PackedScene" id=12]
 
 [node name="Base" type="Node2D"]
 script = ExtResource( 1 )
 water_cursor = ExtResource( 2 )
 fertilizer_cursor = ExtResource( 3 )
 hand_cursor = ExtResource( 4 )
+
+[node name="CactiCreator" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
 
 [node name="Grass" type="Sprite" parent="."]
 position = Vector2( 384.568, 216.601 )
@@ -39,11 +45,11 @@ texture = ExtResource( 8 )
 
 [node name="Fertilizer" type="Sprite" parent="LowerHUD"]
 position = Vector2( 535, 380 )
-texture = ExtResource( 3 )
+texture = ExtResource( 9 )
 
 [node name="Buttons" type="Sprite" parent="LowerHUD"]
 position = Vector2( 598.327, 397.346 )
-texture = ExtResource( 2 )
+texture = ExtResource( 10 )
 offset = Vector2( 78.1318, -17.729 )
 
 [node name="WateringButton" type="Button" parent="LowerHUD/Buttons"]
@@ -62,18 +68,19 @@ margin_bottom = 24.4877
 [node name="Items" type="Node2D" parent="."]
 z_index = 1
 
-[node name="Pot" parent="Items" instance=ExtResource( 9 )]
+[node name="Pot" parent="Items" instance=ExtResource( 11 )]
 position = Vector2( 209.494, 143.758 )
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="real_cacti" parent="Node2D" instance=ExtResource( 10 )]
+[node name="real_cacti" parent="Node2D" instance=ExtResource( 12 )]
 position = Vector2( 60.9379, 134.933 )
 box_label = "Real Cactus"
 
-[node name="fake_cacti" parent="Node2D" instance=ExtResource( 10 )]
+[node name="fake_cacti" parent="Node2D" instance=ExtResource( 12 )]
 position = Vector2( 711.675, 136.489 )
 box_label = "Fake Cactus"
 
+[connection signal="timeout" from="CactiCreator" to="." method="_on_CactiCreator_timeout"]
 [connection signal="pressed" from="LowerHUD/Buttons/WateringButton" to="." method="_on_WateringButton_pressed"]
 [connection signal="pressed" from="LowerHUD/Buttons/FertilizerButton" to="." method="_on_FertilizerButton_pressed"]

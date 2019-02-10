@@ -14,12 +14,15 @@ export var water_cursor : Resource
 export var fertilizer_cursor : Resource 
 export var hand_cursor : Resource 
 
+var potScene = preload("res://Pot.tscn")
+
 var current_mode 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_mode = MODES.hand_mode
 	Input.set_custom_mouse_cursor(hand_cursor)
+	
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,4 +51,14 @@ func _on_WateringButton_pressed():
 func _on_FertilizerButton_pressed():
 	print("Fertilizer mode")
 	current_mode = MODES.fertilizer_mode
+	pass # Replace with function body.
+	
+func add_pot():
+	var Items = get_node("Items")
+	var p = potScene.instance()
+	Items.add_child(p)
+	p.position = get_node("Node2D/real_cacti").position
+func _on_CactiCreator_timeout():
+	print("Adding pot")
+	add_pot()
 	pass # Replace with function body.
