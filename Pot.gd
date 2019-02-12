@@ -121,6 +121,9 @@ func _process(delta):
 			needs_water = true 
 		if(fertilizer_time <0):
 			needs_fert = true
+			
+		if(dragging):
+				set_position(get_viewport().get_mouse_position())
 	pass
 
 func _input_event(viewport, event, shape_idx):
@@ -135,20 +138,12 @@ func _input_event(viewport, event, shape_idx):
 			fertilize()
 		elif(root.current_mode == root.MODES.hand_mode):
 			# Debug
+			dragging = !dragging
 			print("Water time: " + String(water_time) + "\nNeeds water: " + String(needs_water))
 			print("Fertilizer time: " + String(fertilizer_time) + "\nNeeds fert: " + String(needs_fert))
 			print("Current health: " + String(current_health))
 			print("current_growth: " + String(current_growth))
 			print("Current stage: " + String(current_stage))
-
-	elif event is InputEventMouseButton \
-	and event.button_index == BUTTON_LEFT:
-		mouse_pressed = event.pressed
-		dragging = false
-	elif event is InputEventMouseMotion:
-		if(mouse_pressed && root.current_mode == root.MODES.hand_mode):
-			set_position(get_viewport().get_mouse_position())
-			dragging = true
 
 func water():
 	if(needs_water):
