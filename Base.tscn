@@ -4,7 +4,7 @@
 [ext_resource path="res://Pictures/WateringCanArrow.png" type="Texture" id=2]
 [ext_resource path="res://Pictures/FertilizerArrow.png" type="Texture" id=3]
 [ext_resource path="res://Pictures/Temp/hand_cursor.png" type="Texture" id=4]
-[ext_resource path="res://Pictures/Temp/Grass.png" type="Texture" id=5]
+[ext_resource path="res://Pictures/Bg.png" type="Texture" id=5]
 [ext_resource path="res://Pictures/Table.png" type="Texture" id=6]
 [ext_resource path="res://Pictures/Temp/Layer #2.png" type="Texture" id=7]
 [ext_resource path="res://Pictures/LowerHud.png" type="Texture" id=8]
@@ -25,10 +25,10 @@ autostart = true
 
 [node name="Grass" type="Sprite" parent="."]
 position = Vector2( 384.568, 216.601 )
-scale = Vector2( 1.2049, 0.906671 )
 texture = ExtResource( 5 )
 
 [node name="Table" type="Sprite" parent="."]
+visible = false
 position = Vector2( 387.883, 200.728 )
 texture = ExtResource( 6 )
 
@@ -80,6 +80,13 @@ box_label = "Real Cactus"
 [node name="fake_cacti" parent="Node2D" instance=ExtResource( 12 )]
 position = Vector2( 711.675, 136.489 )
 box_label = "Fake Cactus"
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -42.7616, 12.6248 )
+scale = Vector2( 2.10828, 1.94837 )
+texture = ExtResource( 5 )
+energy = 0.5
+shadow_enabled = true
 
 [connection signal="timeout" from="CactiCreator" to="." method="_on_CactiCreator_timeout"]
 [connection signal="pressed" from="LowerHUD/Buttons/WateringButton" to="." method="_on_WateringButton_pressed"]

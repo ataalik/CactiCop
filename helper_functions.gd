@@ -3,10 +3,10 @@ extends Node
 export var hat_types_no = 9
 export var cactus_types = ["OneArm", "ThreeArm", "TwoArm"]
 
-var green = Color(0,255,0)
-var red = Color(255,0,0)
-var blue = Color(0,0,255)
-var yellow = Color(255,255,0)
+var green = Color(0,128,0)
+var red = Color(128,0,0)
+var blue = Color(0,0,128)
+var yellow = Color(128,128,0)
 
 var colors = [green, red, blue, yellow]
 
@@ -43,9 +43,10 @@ func generate_cactus():
 func generate_evil(current_rules):
 	if(current_rules.size() == 3):
 		current_rules.pop_front()
-
+	
+	var all_evil_cacti = []
 	var evil_cacti = generate_cactus()
-
+	all_evil_cacti.append(evil_cacti)
 	current_rules.append(evil_cacti)
 
 	return current_rules

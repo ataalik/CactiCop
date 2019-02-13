@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Pot.gd" type="Script" id=1]
 [ext_resource path="res://Pictures/Temp/Pot.png" type="Texture" id=2]
@@ -24,13 +24,15 @@
 [ext_resource path="res://Pictures/Hats/Pasted Layer #8.png" type="Texture" id=22]
 [ext_resource path="res://Pictures/Hats/Pasted Layer #10.png" type="Texture" id=23]
 [ext_resource path="res://Pictures/Hats/Pasted Layer.png" type="Texture" id=24]
+[ext_resource path="res://Pictures/NeedWatering.png" type="Texture" id=25]
+[ext_resource path="res://Pictures/NeedFertilizer.png" type="Texture" id=26]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
 radius = 32.5633
 height = 93.3534
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
@@ -49,7 +51,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 
 animations = [ {
 "frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
@@ -57,6 +59,10 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="OccluderPolygon2D" id=4]
+
+polygon = PoolVector2Array( 0.214325, -12.1453, 0.477844, -5.29379, -2.15735, -4.76674, -3.47495, 18.9501, -3.47495, 38.187, 6.01178, 37.9235, 17.0796, 34.2342, 20.2419, 31.072, 20.2419, 21.0582, 29.2015, -12.4088, 32.6273, -15.8346, 31.0462, -24.0037, 24.4582, -19.5239, 13.1268, -15.5711, 2.84953, -13.9899 )
 
 [node name="Pot" type="Area2D"]
 script = ExtResource( 1 )
@@ -71,14 +77,25 @@ texture = ExtResource( 2 )
 [node name="Cactus" type="AnimatedSprite" parent="."]
 modulate = Color( 0, 1, 0.0862745, 1 )
 position = Vector2( -1.94266, -63.9835 )
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 animation = "OneArm"
 frame = 3
 
 [node name="Hat" type="AnimatedSprite" parent="."]
 position = Vector2( 16.7578, -94.6302 )
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 frame = 9
+
+[node name="NeedsWater" type="Sprite" parent="."]
+position = Vector2( -26.272, -34.8059 )
+texture = ExtResource( 25 )
+
+[node name="NeedsFertilizer" type="Sprite" parent="."]
+position = Vector2( 31.593, -36.6139 )
+texture = ExtResource( 26 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 4 )
 
 [connection signal="area_entered" from="." to="." method="_on_Pot_area_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_Pot_mouse_entered"]

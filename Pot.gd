@@ -111,6 +111,9 @@ func _process(delta):
 		if(fertilizer_time <0):
 			needs_fert = true
 			
+		$NeedsFertilizer.visible = needs_fert
+		$NeedsWater.visible = needs_water
+		
 	if(dragging):
 		set_position(get_viewport().get_mouse_position())
 	pass

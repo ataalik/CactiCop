@@ -33,6 +33,7 @@ func _ready():
 	current_mode = MODES.hand_mode
 	Input.set_custom_mouse_cursor(hand_cursor)
 	current_rules = helper_functions.generate_evil(current_rules)
+	print(current_rules)
 	current_evil_time = 0
 	rand_evil_offset = helper_functions.get_random(15)
 	pass # Replace with function body.
