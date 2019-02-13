@@ -1,17 +1,11 @@
 extends Area2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var green = Color(0,255,0)
-var red = Color(255,0,0)
-var blue = Color(0,0,255)
-var yellow = Color(255,255,0)
-var cactusColor = yellow
-var hatColor = blue
+
 var needs_water = true
 var needs_fert = true
 var root
+var helper_functions
+
 
 # Growth stages
 enum STAGES{
@@ -36,7 +30,7 @@ var current_health
 
 # Growth time needed
 export var growth_time = 20
-export var growth_threshold = 80 
+export var growth_threshold = 0
 var current_growth
 var current_stage
 
@@ -45,17 +39,13 @@ var mouse_pressed
 var dragging
 
 # Sprite related vars
-export var cactus_types = ["OneArm", "ThreeArm", "TwoArm"] # Should change if we add more arms
-var hat_types_no
 var cactus_sprite
 var hat_sprite
-var current_hands
-var current_hat
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Cactus.modulate = cactusColor
-	$Hat.modulate = hatColor
+	helper_functions = get_node("/root/helper_functions")
 	root = get_node("/root/Base")
 	
 	water_time = water_time_constant
@@ -68,19 +58,18 @@ func _ready():
 	
 
 	hat_sprite = get_node("Hat")
-	hat_types_no = hat_sprite.get_sprite_frames().get_frame_count(hat_sprite.get_animation())
+	var cacti_dict = helper_functions.generate_cactus()
 
-
-	current_hands = get_random(cactus_types.size())
-	cactus_sprite.set_animation(cactus_types[current_hands])
+	cactus_sprite.set_animation(cacti_dict["hand_type"])
 	cactus_sprite.set_frame(current_stage)
 
-	current_hat = get_random(hat_types_no)
-	hat_sprite.set_frame(current_hat)
+	hat_sprite.set_frame(cacti_dict["hat_type"])
+	
+	$Cactus.modulate = cacti_dict["cactus_color"]
+	$Hat.modulate = cacti_dict["hat_color"]
+
 	hat_sprite.set_visible(false)
 
-	print(current_hands)
-	print(current_hat)
 	mouse_pressed = false
 	dragging = false
 	pass
@@ -122,8 +111,8 @@ func _process(delta):
 		if(fertilizer_time <0):
 			needs_fert = true
 			
-		if(dragging):
-				set_position(get_viewport().get_mouse_position())
+	if(dragging):
+		set_position(get_viewport().get_mouse_position())
 	pass
 
 func _input_event(viewport, event, shape_idx):
@@ -174,8 +163,3 @@ func _on_Pot_area_entered(area):
 	if(area.name == "real_cacti" || area.name == "fake_cacti"):
 		ship(area.name)
 	pass # Replace with function body.
-
-
-func get_random(NR): #Randomize a Dir-number
-    randomize()
-    return randi()%NR

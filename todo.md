@@ -4,6 +4,7 @@
 - [ ] Shipping areas
 
 - [ ] Add a way to communicate with the player to tell them who to watch out for. ( fax, telgraph, newspaper etc)
+
 ## Buttons
 
 - [ ] hide UI class buttons
@@ -29,7 +30,7 @@
 
 ## non critical
 	
-- [x] when the bad cacti goes to either they could maybe make a sound or  reveal their face. Angry/sad if they are sent to evil area and laughing in a sinister face if they get sent as a normal cactus. WIll log as non critical
+- [ ] when the bad cacti goes to either they could maybe make a sound or  reveal their face. Angry/sad if they are sent to evil area and laughing in a sinister face if they get sent as a normal cactus. WIll log as non critical
 
 - [ ] Change sprites according to needs.
 

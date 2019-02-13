@@ -19,6 +19,10 @@ config/name="CactiCop"
 run/main_scene="res://Base.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+helper_functions="*res://helper_functions.gd"
+
 [display]
 
 window/size/width=768
