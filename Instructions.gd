@@ -11,3 +11,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Next_Page_button_up():
+	$Base/Info.text = ("Next Page")
+	pass # Replace with function body.
+
+
+func _on_Prev_Page_button_up():
+	$Base/Info.text = ("Prev Page")
+	pass # Replace with function body.

@@ -1,6 +1,6 @@
 extends Area2D
 
-
+var evil = false #Debugging the Evil functions
 var needs_water = true
 var needs_fert = true
 var root
@@ -42,6 +42,7 @@ var dragging
 var cactus_sprite
 var hat_sprite
 
+var cacti_dict
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -58,7 +59,7 @@ func _ready():
 	
 
 	hat_sprite = get_node("Hat")
-	var cacti_dict = helper_functions.generate_cactus()
+	cacti_dict = helper_functions.generate_cactus()
 
 	cactus_sprite.set_animation(cacti_dict["hand_type"])
 	cactus_sprite.set_frame(current_stage)
@@ -117,6 +118,7 @@ func _process(delta):
 	if(dragging):
 		set_position(get_viewport().get_mouse_position())
 	pass
+	$Evil.visible = evil
 
 func _input_event(viewport, event, shape_idx):
 	

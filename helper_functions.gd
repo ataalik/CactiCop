@@ -40,13 +40,16 @@ func generate_cactus():
 	}
 	return cacti_dictionary
 
+func make_evil_rule():
+	#var type = cactus_types[get_random(len(cactus_types))]
+	
+	pass
+
 func generate_evil(current_rules):
 	if(current_rules.size() == 3):
 		current_rules.pop_front()
-	
-	var all_evil_cacti = []
 	var evil_cacti = generate_cactus()
-	all_evil_cacti.append(evil_cacti)
+	
 	current_rules.append(evil_cacti)
 
 	return current_rules
