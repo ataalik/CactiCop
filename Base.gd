@@ -71,18 +71,20 @@ func _process(delta):
 func find_evil(): #Finding if there are Evil Cacti
 	#OBS! NEED to not use arrays directly from cacties!
 	var all_cacti = Items.get_children()
+	var temp_cacti = []
 	for cacti in all_cacti:
+		temp_cacti.append(cacti.cacti_dict)
+	for cacti in temp_cacti:
 		for rule in current_rules:
-			if rule["cactus_color"] == cacti.cacti_dict["cactus_color"]:
+			if rule["cactus_color"] == cacti["cactus_color"]:
 				#cacti.evil = true
-				if rule["hand_type"] == cacti.cacti_dict["hand_type"]:
+				if rule["hand_type"] == cacti["hand_type"]:
 						#cacti.evil = true
-						if rule["hat_type"] == cacti.cacti_dict["hat_type"]:
+						if rule["hat_type"] == cacti["hat_type"]:
 							#cacti.evil = true
-							if rule["hat_color"] == cacti.cacti_dict["hat_color"]:
-								cacti.evil = true
+							if rule["hat_color"] == cacti["hat_color"]:
+								#cacti.evil = true
 								pass
-	pass
 
 func _on_WateringButton_pressed():
 	print("Watering mode")
