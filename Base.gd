@@ -36,16 +36,17 @@ func _ready():
 	helper_functions = get_node("/root/helper_functions")
 	current_mode = MODES.hand_mode
 	Input.set_custom_mouse_cursor(hand_cursor)
-	current_rules = helper_functions.generate_evil(current_rules)
-	print(current_rules)
+	for x in range(0,10):
+		current_rules = helper_functions.make_evil_rule(current_rules)
+
 	current_evil_time = 0
+	
 	rand_evil_offset = helper_functions.get_random(15)
 	Items = get_node("Items")
 	pass # Replace with function body.
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	# Change the cursor image according to the mode we are in. 
 	if(current_mode == MODES.water_mode):
 		Input.set_custom_mouse_cursor(water_cursor)
@@ -56,13 +57,18 @@ func _process(delta):
 	
 	current_evil_time = current_evil_time + delta
 	
-	if(current_evil_time > (base_evil_time + rand_evil_offset)): #create new cacti at interval
+	
+	#create new rule at interval
+
+	if(current_evil_time > (base_evil_time + rand_evil_offset)): 
 		rand_evil_offset = helper_functions.get_random(15) # Set random interval
-		current_rules = helper_functions.generate_evil(current_rules) #Creates evil Cacti according to rules
+
+		#Creates a new rule
+		current_rules = helper_functions.make_evil_rule(current_rules)
+		
 		current_evil_time = 0 
-		print(String(current_rules))
+
 		#$LowerHUD/Evil.text = String(current_rules)
-		find_evil()
 	# Change back to hand mode when right click is pressed. 
 	if Input.is_action_pressed("hand_mode") and current_mode != MODES.hand_mode:
 		current_mode = MODES.hand_mode

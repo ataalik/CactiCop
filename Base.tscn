@@ -76,7 +76,7 @@ position = Vector2( 61.0725, 369.195 )
 z_index = 1
 
 [node name="Pot" parent="Items" instance=ExtResource( 12 )]
-position = Vector2( 224.494, 143.758 )
+position = Vector2( 240.784, 176.338 )
 
 [node name="Node2D" type="Node2D" parent="."]
 
