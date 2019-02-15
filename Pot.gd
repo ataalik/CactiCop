@@ -30,7 +30,7 @@ var current_health
 
 # Growth time needed
 export var growth_time = 20
-export var growth_threshold = 0
+export var growth_threshold = 80
 var current_growth
 var current_stage
 
