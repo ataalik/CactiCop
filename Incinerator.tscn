@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Incinerator.gd" type="Script" id=1]
+[ext_resource path="res://Pictures/IncineratorBg.png" type="Texture" id=2]
+[ext_resource path="res://Pictures/Incinerator.png" type="Texture" id=3]
+[ext_resource path="res://Pictures/Flames/Pasted Layer #1.png" type="Texture" id=4]
+[ext_resource path="res://Pictures/Flames/Pasted Layer #2.png" type="Texture" id=5]
+[ext_resource path="res://Pictures/Flames/Pasted Layer.png" type="Texture" id=6]
+[ext_resource path="res://Pictures/Flames/Background.png" type="Texture" id=7]
+[ext_resource path="res://Pictures/IncineratorDoor.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+extents = Vector2( 57.9043, 60.0415 )
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="OccluderPolygon2D" id=3]
+
+polygon = PoolVector2Array( 48.5142, 40.5642, 46.6234, -4.81389, 23.9344, -19.9399, 3.76636, -22.4609, -20.1832, -20.5702, -40.9815, -9.22565, -48.5445, 7.16087, -48.5445, 43.0852, -57.368, 53.7995, -68.0823, 67.665, -67.452, -35.6962, 71.2032, -34.4357, 71.2032, 66.4045 )
+
+[node name="Incinerator" type="Area2D"]
+position = Vector2( 58.9476, 174.738 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Incinerator" type="Sprite" parent="Sprite"]
+position = Vector2( 1.41586, -27.6473 )
+z_index = 100
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -45.6875
+margin_top = 44.6608
+margin_right = 47.3125
+margin_bottom = 58.6608
+text = "Box"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 18.05 )
+frames = SubResource( 2 )
+frame = 2
+playing = true
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -2.46472, 20.8166 )
+scale = Vector2( 6.40579, 5.0817 )
+texture = ExtResource( 7 )
+shadow_enabled = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+
+[node name="IncineratorDoor" type="Sprite" parent="."]
+position = Vector2( 3.16138, -66.7974 )
+texture = ExtResource( 8 )
+
