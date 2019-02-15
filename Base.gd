@@ -88,6 +88,7 @@ func find_evil(): #Finding if there are Evil Cacti
 	#OBS! NEED to not use arrays directly from cacties!
 	var all_cacti = Items.get_children()
 	var temp_cacti = []
+	$LowerHUD/Instructions.add_text(current_rules)
 	for cacti in all_cacti:
 		temp_cacti.append(cacti.cacti_dict)
 	for cacti in temp_cacti:
@@ -101,6 +102,7 @@ func find_evil(): #Finding if there are Evil Cacti
 							if rule["hat_color"] == cacti["hat_color"]:
 								#cacti.evil = true
 								pass
+
 
 func _on_WateringButton_pressed():
 	print("Watering mode")

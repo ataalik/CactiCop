@@ -12,6 +12,9 @@ func _ready():
 #func _process(delta):
 #	pass
 
+func add_text(dict):
+	$Base/desc.text = str(dict[0]["cactus_color"],"\n",str(dict[0]["hand_type"]))
+	pass
 
 func _on_Next_Page_button_up():
 	$Base/Info.text = ("Next Page")

@@ -18,6 +18,14 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Wanted
 "
 
+[node name="desc" type="Label" parent="Base"]
+margin_left = -46.0
+margin_top = -23.0
+margin_right = 24.0
+margin_bottom = 49.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "desc."
+
 [node name="Next Page" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 27.0294
