@@ -11,20 +11,28 @@ texture = ExtResource( 2 )
 
 [node name="Info" type="Label" parent="Base"]
 margin_left = -46.0
-margin_top = -35.0
+margin_top = -36.0
 margin_right = 24.0
-margin_bottom = 49.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Wanted
-"
+margin_bottom = -22.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Wanted"
 
 [node name="desc" type="Label" parent="Base"]
-margin_left = -46.0
-margin_top = -23.0
-margin_right = 24.0
-margin_bottom = 49.0
+margin_left = -45.0294
+margin_top = -22.3529
+margin_right = 24.9706
+margin_bottom = 49.6471
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "desc."
+text = "desc.
+test"
+
+[node name="Info2" type="Label" parent="Base"]
+margin_left = -46.3235
+margin_top = 9.94177
+margin_right = 23.6765
+margin_bottom = 23.9418
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "cacti with"
 
 [node name="Next Page" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )

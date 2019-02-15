@@ -3,7 +3,7 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+var page = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -13,14 +13,74 @@ func _ready():
 #	pass
 
 func add_text(dict):
-	$Base/desc.text = str(dict[0]["cactus_color"],"\n",str(dict[0]["hand_type"]))
+	if page > len(dict):
+		page = 0
+	if page < 0:
+		page = 0
+	else:
+		var desc_string = ""
+		print("Printing Stuff")
+		if dict[page]["rule_level"] == 0:
+			desc_string = get_color(dict[page]["cactus_color"])
+			desc_string = desc_string + "\n\n\nno hat"
+		if dict[page]["rule_level"] == 1:
+			desc_string = get_color(dict[page]["cactus_color"])
+			desc_string = desc_string + "\n" + str(dict[page]["hand_type"])
+			desc_string = desc_string + "\n\nno hat"
+		if dict[page]["rule_level"] == 2:
+			desc_string = get_color(dict[page]["cactus_color"])
+			desc_string = desc_string + "\n" + str(dict[page]["hand_type"])
+			desc_string = desc_string + "\n\n" + str(get_hat(dict[page]["hat_type"]))
+		$Base/desc.text = str(desc_string)
+	pass
+	
+func get_color(color):#Converting colors to text
+	"""var green = Color(0,128,0)
+var red = Color(128,0,0)
+var blue = Color(0,0,128)
+var yellow = Color(128,128,0)"""
+	if color == Color(0,128,0):
+		return("Green")
+	if color == Color(128,0,0):
+		return("Red")
+	if color == Color(0,0,128):
+		return("Blue")
+	if color == Color(128,128,0):
+		return("Yellow")
 	pass
 
+func get_hat(hatNr):#Converting hat number to name
+	if hatNr == 0:
+		return"Fez"
+	if hatNr == 1:
+		return"Prop. cap"
+	if hatNr == 2:
+		return"Santa hat"
+	if hatNr == 3:
+		return"Cap"
+	if hatNr == 4:
+		return"Boot"
+	if hatNr == 5:
+		return"Sombrero"
+	if hatNr == 6:
+		return"DunceHat"
+	if hatNr == 7:
+		return"Top Hat"
+	if hatNr == 8:
+		return"Cowboy hat"
+	if hatNr == 7:
+		return"Taxi Cap"
+	
+	pass
+
+
 func _on_Next_Page_button_up():
-	$Base/Info.text = ("Next Page")
+	page += 1
+	#$Base/Info.text = ("Next Page")
 	pass # Replace with function body.
 
 
 func _on_Prev_Page_button_up():
-	$Base/Info.text = ("Prev Page")
+	page -= 1
+	#$Base/Info.text = ("Prev Page")
 	pass # Replace with function body.

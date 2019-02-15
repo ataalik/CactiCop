@@ -51,6 +51,7 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+
 	# Change the cursor image according to the mode we are in. 
 	if(current_mode == MODES.water_mode):
 		if cursor_change:
@@ -99,16 +100,15 @@ func find_evil(): #Finding if there are Evil Cacti
 		temp_cacti.append(cacti.cacti_dict)
 	for cacti in temp_cacti:
 		for rule in current_rules:
-			if rule["cactus_color"] == cacti["cactus_color"]:
+			pass
+			#if rule["cactus_color"] == cacti["cactus_color"]:
 				#cacti.evil = true
-				if rule["hand_type"] == cacti["hand_type"]:
+				#if rule["hand_type"] == cacti["hand_type"]:
 						#cacti.evil = true
-						if rule["hat_type"] == cacti["hat_type"]:
+				#		if rule["hat_type"] == cacti["hat_type"]:
 							#cacti.evil = true
-							if rule["hat_color"] == cacti["hat_color"]:
+				#			if rule["hat_color"] == cacti["hat_color"]:
 								#cacti.evil = true
-								pass
-
 
 func _on_WateringButton_pressed():
 	print("Watering mode")
@@ -122,10 +122,10 @@ func _on_FertilizerButton_pressed():
 	pass # Replace with function body.
 	
 func add_pot():
-	
 	var p = potScene.instance()
 	Items.add_child(p)
 	p.position = get_node("Node2D/new_cacti").position
+	find_evil()
 
 func _on_CactiCreator_timeout():
 	print("Adding pot")
