@@ -89,13 +89,14 @@ func _process(delta):
 			cursor_change = true
 			$CursorChange.start()
 		pass
+	$LowerHUD/Instructions.add_text(current_rules)
 	pass
 	
 func find_evil(): #Finding if there are Evil Cacti
 	#OBS! NEED to not use arrays directly from cacties!
 	var all_cacti = Items.get_children()
 	var temp_cacti = []
-	$LowerHUD/Instructions.add_text(current_rules)
+	
 	for cacti in all_cacti:
 		temp_cacti.append(cacti.cacti_dict)
 	for cacti in temp_cacti:
