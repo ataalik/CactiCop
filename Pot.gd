@@ -39,8 +39,6 @@ var mouse_pressed
 var dragging
 
 # Sprite related vars
-var cactus_sprite
-var hat_sprite
 
 var cacti_dict
 
@@ -54,21 +52,18 @@ func _ready():
 	current_health = max_health
 	current_stage = STAGES.seedling
 
-	cactus_sprite = get_node("Cactus")
 	
-
-	hat_sprite = get_node("Hat")
 	cacti_dict = helper_functions.generate_cactus()
 
-	cactus_sprite.set_animation(cacti_dict["hand_type"])
-	cactus_sprite.set_frame(current_stage)
+	$Cactus.set_animation(cacti_dict["hand_type"])
+	$Cactus.set_frame(current_stage)
 
-	hat_sprite.set_frame(cacti_dict["hat_type"])
+	$Hat.set_frame(cacti_dict["hat_type"])
 	
 	$Cactus.modulate = cacti_dict["cactus_color"]
 	$Hat.modulate = cacti_dict["hat_color"]
 
-	hat_sprite.set_visible(false)
+	$Hat.set_visible(false)
 
 	mouse_pressed = false
 	dragging = false
@@ -76,19 +71,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# if we don't need something decrement our need cooldown
 
 	var current_rules = root.current_rules
 	check_evil(current_rules)
 
 	if(current_stage != STAGES.mature):
+		# if we don't need something decrement our need cooldowns
 		if(needs_water == false):
 			water_time = water_time - delta	
 
 		if(needs_fert == false):
 			fertilizer_time = fertilizer_time - delta
 
-		# if we need both decrease health 2, if we need one decrease 1, if we need none increase 1
+		# if we need both decrease health 2, if we need one decrease 1
+		# if we need none increase 1
 		if(needs_fert && needs_water):
 			current_health = current_health - (2 * delta)
 		elif(needs_fert || needs_water):
@@ -121,7 +117,6 @@ func _process(delta):
 	if(dragging) and helper_functions.pickedPot == self.name:
 		set_position(get_viewport().get_mouse_position())
 	pass
-	#$Evil.visible = evil
 
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton \
@@ -139,7 +134,13 @@ func _input_event(viewport, event, shape_idx):
 			
 			dragging = !dragging
 			
-			print("Evil?: " + String(evil))
+			print("Water time: " + String(water_time) + "\nNeeds water: " + String(needs_water))
+			print("Fertilizer time: " + String(fertilizer_time) + "\nNeeds fert: " + String(needs_fert))
+			print("Current health: " + String(current_health))
+			print("current_growth: " + String(current_growth))
+			print("Current stage: " + String(current_stage))
+			print(cacti_dict)
+			print("ebil? " + String(evil))
 			
 func water():
 	if(needs_water):
@@ -155,9 +156,10 @@ func fertilize():
 
 func grow():
 	current_stage = current_stage + 1
-	cactus_sprite.set_frame(current_stage)
+	$Cactus.set_frame(current_stage)
+	print($Cactus.get_frame())
 	if(current_stage == STAGES.mature):
-		hat_sprite.set_visible(true)
+		$Hat.set_visible(true)
 	current_growth = 0
 
 func ship(area_name):

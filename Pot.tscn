@@ -1,9 +1,31 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Pot.gd" type="Script" id=1]
 [ext_resource path="res://Pictures/Temp/Pot.png" type="Texture" id=2]
-[ext_resource path="res://Pictures/NeedWatering.png" type="Texture" id=3]
-[ext_resource path="res://Pictures/NeedFertilizer.png" type="Texture" id=4]
+[ext_resource path="res://Pictures/Cacti/ThreeArm/0.png" type="Texture" id=3]
+[ext_resource path="res://Pictures/Cacti/ThreeArm/1.png" type="Texture" id=4]
+[ext_resource path="res://Pictures/Cacti/ThreeArm/2.png" type="Texture" id=5]
+[ext_resource path="res://Pictures/Cacti/ThreeArm/3.png" type="Texture" id=6]
+[ext_resource path="res://Pictures/Cacti/TwoArm/0.png" type="Texture" id=7]
+[ext_resource path="res://Pictures/Cacti/TwoArm/1.png" type="Texture" id=8]
+[ext_resource path="res://Pictures/Cacti/TwoArm/2.png" type="Texture" id=9]
+[ext_resource path="res://Pictures/Cacti/TwoArm/3.png" type="Texture" id=10]
+[ext_resource path="res://Pictures/Cacti/oneArm/Pasted Layer.png" type="Texture" id=11]
+[ext_resource path="res://Pictures/Cacti/oneArm/Pasted Layer #1.png" type="Texture" id=12]
+[ext_resource path="res://Pictures/Cacti/oneArm/Pasted Layer #2.png" type="Texture" id=13]
+[ext_resource path="res://Pictures/Cacti/oneArm/Pasted Layer #3.png" type="Texture" id=14]
+[ext_resource path="res://Pictures/Hats/Pasted Layer #1.png" type="Texture" id=15]
+[ext_resource path="res://Pictures/Hats/Pasted Layer #2.png" type="Texture" id=16]
+[ext_resource path="res://Pictures/Hats/Pasted Layer #3.png" type="Texture" id=17]
+[ext_resource path="res://Pictures/Hats/Pasted Layer #4.png" type="Texture" id=18]
+[ext_resource path="res://Pictures/Hats/Pasted Layer #5.png" type="Texture" id=19]
+[ext_resource path="res://Pictures/Hats/Pasted Layer #6.png" type="Texture" id=20]
+[ext_resource path="res://Pictures/Hats/Pasted Layer #7.png" type="Texture" id=21]
+[ext_resource path="res://Pictures/Hats/Pasted Layer #8.png" type="Texture" id=22]
+[ext_resource path="res://Pictures/Hats/Pasted Layer #10.png" type="Texture" id=23]
+[ext_resource path="res://Pictures/Hats/Pasted Layer.png" type="Texture" id=24]
+[ext_resource path="res://Pictures/NeedWatering.png" type="Texture" id=25]
+[ext_resource path="res://Pictures/NeedFertilizer.png" type="Texture" id=26]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -13,17 +35,17 @@ height = 93.3534
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ null, null, null, null ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "ThreeArm",
 "speed": 5.0
 }, {
-"frames": [ null, null, null, null ],
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "TwoArm",
 "speed": 5.0
 }, {
-"frames": [ null, null, null, null ],
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "OneArm",
 "speed": 5.0
@@ -32,7 +54,7 @@ animations = [ {
 [sub_resource type="SpriteFrames" id=3]
 
 animations = [ {
-"frames": [ null, null, null, null, null, null, null, null, null, null ],
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -66,32 +88,15 @@ frame = 9
 
 [node name="NeedsWater" type="Sprite" parent="."]
 position = Vector2( -26.272, -34.8059 )
-texture = ExtResource( 3 )
+texture = ExtResource( 25 )
 
 [node name="NeedsFertilizer" type="Sprite" parent="."]
 position = Vector2( 31.593, -36.6139 )
-texture = ExtResource( 4 )
+texture = ExtResource( 26 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource( 4 )
 
-[node name="Evil" type="Sprite" parent="."]
-visible = false
-position = Vector2( 25.3651, -84.6073 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 7.25, 28.25 )
-
-[node name="Evil2" type="Sprite" parent="."]
-visible = false
-position = Vector2( 25.3651, -84.6073 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 7.25, 28.25 )
-
 [connection signal="area_entered" from="." to="." method="_on_Pot_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_Pot_area_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_Pot_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Pot_mouse_exited"]
