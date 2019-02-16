@@ -57,10 +57,11 @@ func _ready():
 
 	$Cactus.set_animation(cacti_dict["hand_type"])
 	$Cactus.set_frame(current_stage)
-
+	
 	$Hat.set_frame(cacti_dict["hat_type"])
 	
 	$Cactus.modulate = cacti_dict["cactus_color"]
+	$Dead.modulate = cacti_dict["cactus_color"]
 	$Hat.modulate = cacti_dict["hat_color"]
 
 	$Hat.set_visible(false)
@@ -74,6 +75,8 @@ func _process(delta):
 
 	var current_rules = root.current_rules
 	check_evil(current_rules)
+	
+	
 
 	if(current_stage != STAGES.mature):
 		# if we don't need something decrement our need cooldowns
@@ -180,6 +183,7 @@ func ship(area_name):
 	if(evil && area_name == "fake_cacti") || \
 		(!evil && area_name == "real_cacti" && current_stage == STAGES.mature):
 		helper_functions.points += 20
+		helper_functions.shipping_confirmation(area_name,"good")
 	else:
 		helper_functions.points -= 20
 		helper_functions.strikes -= 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Pot.gd" type="Script" id=1]
 [ext_resource path="res://Pictures/Temp/Pot.png" type="Texture" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://Pictures/Hats/Pasted Layer.png" type="Texture" id=24]
 [ext_resource path="res://Pictures/NeedWatering.png" type="Texture" id=25]
 [ext_resource path="res://Pictures/NeedFertilizer.png" type="Texture" id=26]
+[ext_resource path="res://Pictures/Cacti/Dead_cacti.png" type="Texture" id=27]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -79,7 +80,6 @@ modulate = Color( 0, 1, 0.0862745, 1 )
 position = Vector2( -1.94266, -63.9835 )
 frames = SubResource( 2 )
 animation = "OneArm"
-frame = 3
 
 [node name="Hat" type="AnimatedSprite" parent="."]
 position = Vector2( 16.7578, -94.6302 )
@@ -109,6 +109,11 @@ scale = Vector2( 3, 3 )
 texture = ExtResource( 25 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 27 )
+
+[node name="Dead" type="Sprite" parent="."]
+visible = false
+position = Vector2( 2.39496, -13.1722 )
+texture = ExtResource( 27 )
 
 [connection signal="area_entered" from="." to="." method="_on_Pot_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Pot_area_exited"]
