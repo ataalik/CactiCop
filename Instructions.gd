@@ -14,8 +14,8 @@ func _process(delta):
 	pass
 
 func add_text(dict):
-	if page > len(dict):
-		page = 0
+	if page >= len(dict):
+		page = page - 1
 	if page < 0:
 		page = 0
 	else:
@@ -76,12 +76,14 @@ func get_hat(hatNr):#Converting hat number to name
 
 
 func _on_Next_Page_button_up():
+	$Paperflip.play()
 	page += 1
 	#$Base/Info.text = ("Next Page")
 	pass # Replace with function body.
 
 
 func _on_Prev_Page_button_up():
+	$Paperflip.play()
 	page -= 1
 	#$Base/Info.text = ("Prev Page")
 	pass # Replace with function body.

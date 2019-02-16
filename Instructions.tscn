@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Instructions.gd" type="Script" id=1]
 [ext_resource path="res://Pictures/unknown.png" type="Texture" id=2]
+[ext_resource path="res://Sound/Paperflip.wav" type="AudioStream" id=3]
 
 [node name="Instructions" type="Node2D"]
 script = ExtResource( 1 )
@@ -47,6 +48,9 @@ margin_left = 26.1193
 margin_top = -15.2652
 margin_right = 51.1193
 margin_bottom = 4.73483
+
+[node name="Paperflip" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="button_up" from="Next Page" to="." method="_on_Next_Page_button_up"]
 [connection signal="button_up" from="Prev Page" to="." method="_on_Prev_Page_button_up"]

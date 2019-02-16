@@ -88,6 +88,10 @@ func _process(delta):
 		if not Input.set_custom_mouse_cursor(hand_cursor):
 			cursor_change = true
 			$CursorChange.start()
+			if current_mode == MODES.water_mode:
+				$wateringSound.play()
+			if current_mode == MODES.fertilizer_mode:
+				$FertilizingSound.play()
 		pass
 	$LowerHUD/Instructions.add_text(current_rules)
 	pass
