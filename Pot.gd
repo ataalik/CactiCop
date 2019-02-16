@@ -181,11 +181,8 @@ func ship(area_name):
 	if(evil && area_name == "fake_cacti") || \
 		(!evil && area_name == "real_cacti" && current_stage == STAGES.mature):
 		helper_functions.points += 20
-<<<<<<< HEAD
 		helper_functions.shipping_confirmation(area_name,"good")
-=======
 		root.shipped_counter += 1
->>>>>>> 6fb9d7c6ccabe907cbd2e8b936066f6997107353
 	else:
 		helper_functions.points -= 20
 		helper_functions.strikes -= 1
