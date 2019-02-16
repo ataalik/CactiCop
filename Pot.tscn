@@ -98,5 +98,6 @@ texture = ExtResource( 26 )
 occluder = SubResource( 4 )
 
 [connection signal="area_entered" from="." to="." method="_on_Pot_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Pot_area_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_Pot_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Pot_mouse_exited"]

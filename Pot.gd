@@ -29,7 +29,7 @@ export var max_health = 100
 var current_health
 
 # Growth time needed
-export var growth_time = 20
+export var growth_time = 3
 export var growth_threshold = 80
 var current_growth
 var current_stage
@@ -37,7 +37,7 @@ var current_stage
 # For drag and drop 
 var mouse_pressed
 var dragging
-
+var inside_area = null
 # Sprite related vars
 
 var cacti_dict
@@ -110,10 +110,14 @@ func _process(delta):
 			needs_water = true 
 		if(fertilizer_time <0):
 			needs_fert = true
-			
+	
 		$NeedsFertilizer.visible = needs_fert
 		$NeedsWater.visible = needs_water
-		
+	else:
+		if(!dragging && inside_area != null):
+			ship(inside_area)
+		$NeedsFertilizer.visible = needs_fert
+		$NeedsWater.visible = needs_water
 	if(dragging) and helper_functions.pickedPot == self.name:
 		set_position(get_viewport().get_mouse_position())
 	pass
@@ -157,39 +161,40 @@ func fertilize():
 func grow():
 	current_stage = current_stage + 1
 	$Cactus.set_frame(current_stage)
-	print($Cactus.get_frame())
 	if(current_stage == STAGES.mature):
 		$Hat.set_visible(true)
 	current_growth = 0
 
 func ship(area_name):
-	# TODO implement this. Check if plant was evil. Do things like adjusting score or informing players of wrong decision.
-	print("shipping to " + area_name)
-	pass
+	# TODO Do things like adjusting score 
+	# or informing players of wrong decision.
+	# and delete cacti
+	if(evil && area_name == "fake_cacti") || (!evil && area_name == "real_cacti"):
+		print("This is the correct thing to do")
+	else:
+		print("This is the wrong thing to do")
 
 func _on_Pot_area_entered(area):
 	if(area.name == "real_cacti" || area.name == "fake_cacti"):
-		ship(area.name)
+		inside_area = area.name
 		#$CollisionShape2D.disabled = true
-	#if(area.name == )
-	pass # Replace with function body.
 
 func _on_Pot_area_exited(area):
-		pass
-	
-func check_evil(current_rules): #Finding if there are Evil Cacti
-		for rule in current_rules:
-			if rule["rule_level"] == 0:
-				if rule["cactus_color"] == cacti_dict["cactus_color"]:
-					evil = true
-			if rule["rule_level"] == 1:
-				if rule["cactus_color"] == cacti_dict["cactus_color"] && \
-				rule["hand_type"] == cacti_dict["hand_type"]:
-					evil = true
-			if rule["rule_level"] == 2:
-				if rule["cactus_color"] == cacti_dict["cactus_color"] && \
-				rule["hand_type"] == cacti_dict["hand_type"] && \
-				rule["hat_type"] == cacti_dict["hat_type"]:
-					evil = true
+	if(area.name == "real_cacti" || area.name == "fake_cacti"):
+		inside_area = null
 
+func check_evil(current_rules): #Finding if there are Evil Cacti
+	for rule in current_rules:
+		if rule["rule_level"] == 0:
+			if rule["cactus_color"] == cacti_dict["cactus_color"]:
+				evil = true
+		if rule["rule_level"] == 1:
+			if rule["cactus_color"] == cacti_dict["cactus_color"] && \
+			rule["hand_type"] == cacti_dict["hand_type"]:
+				evil = true
+		if rule["rule_level"] == 2:
+			if rule["cactus_color"] == cacti_dict["cactus_color"] && \
+			rule["hand_type"] == cacti_dict["hand_type"] && \
+			rule["hat_type"] == cacti_dict["hat_type"]:
+				evil = true
 
