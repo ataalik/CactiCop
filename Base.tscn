@@ -125,6 +125,7 @@ z_index = 1
 
 [node name="Pot" parent="Items" instance=ExtResource( 18 )]
 position = Vector2( 265.545, 202.647 )
+growth_time = 20
 
 [node name="Node2D" type="Node2D" parent="."]
 

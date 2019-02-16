@@ -179,6 +179,7 @@ func ship(area_name):
 		print("This is the correct thing to do")
 	else:
 		print("This is the wrong thing to do")
+		
 
 func _on_Pot_area_entered(area):
 	if(area.name == "real_cacti" || area.name == "fake_cacti"):
@@ -204,5 +205,10 @@ func check_evil(current_rules): #Finding if there are Evil Cacti
 			rule["hand_type"] == cacti_dict["hand_type"] && \
 			rule["hat_type"] == cacti_dict["hat_type"]:
 				evil = true
+func _on_MinusPoints_timeout():
+	if needs_fert or needs_water:
+		helper_functions.points -= 5
+		$Warning.visible = true
+	pass # Replace with function body.
 
-#>>>>>>> 267de94196853f8297817fff5d01f26ce1d62ca5
+	pass # Replace with function body.
