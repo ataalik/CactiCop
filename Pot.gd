@@ -118,10 +118,10 @@ func _process(delta):
 		$NeedsFertilizer.visible = needs_fert
 		$NeedsWater.visible = needs_water
 		
-	if(dragging):
+	if(dragging) and helper_functions.pickedPot == self.name:
 		set_position(get_viewport().get_mouse_position())
 	pass
-	$Evil.visible = evil
+	#$Evil.visible = evil
 
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton \
@@ -134,10 +134,13 @@ func _input_event(viewport, event, shape_idx):
 			fertilize()
 		elif(root.current_mode == root.MODES.hand_mode):
 			# Debug
+			
+			helper_functions.pickedPot = self.name
+			
 			dragging = !dragging
+			
 			print("Evil?: " + String(evil))
-
-
+			
 func water():
 	if(needs_water):
 		needs_water = false
@@ -165,13 +168,13 @@ func ship(area_name):
 func _on_Pot_area_entered(area):
 	if(area.name == "real_cacti" || area.name == "fake_cacti"):
 		ship(area.name)
-
+		#$CollisionShape2D.disabled = true
 	#if(area.name == )
 	pass # Replace with function body.
 
-	pass # Replace with function body.
-
-
+func _on_Pot_area_exited(area):
+		pass
+	
 func check_evil(current_rules): #Finding if there are Evil Cacti
 		for rule in current_rules:
 			if rule["rule_level"] == 0:
@@ -186,3 +189,5 @@ func check_evil(current_rules): #Finding if there are Evil Cacti
 				rule["hand_type"] == cacti_dict["hand_type"] && \
 				rule["hat_type"] == cacti_dict["hat_type"]:
 					evil = true
+
+

@@ -76,6 +76,15 @@ texture = ExtResource( 4 )
 occluder = SubResource( 4 )
 
 [node name="Evil" type="Sprite" parent="."]
+visible = false
+position = Vector2( 25.3651, -84.6073 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 7.25, 28.25 )
+
+[node name="Evil2" type="Sprite" parent="."]
+visible = false
 position = Vector2( 25.3651, -84.6073 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
@@ -83,5 +92,6 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 7.25, 28.25 )
 
 [connection signal="area_entered" from="." to="." method="_on_Pot_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Pot_area_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_Pot_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Pot_mouse_exited"]
