@@ -182,6 +182,7 @@ func ship(area_name):
 		helper_functions.points += 20
 	else:
 		helper_functions.points -= 20
+		helper_functions.strikes -= 1
 	queue_free()
 
 func _on_Pot_area_entered(area):
@@ -213,6 +214,8 @@ func _on_MinusPoints_timeout():
 	if needs_fert or needs_water:
 		helper_functions.points -= 5
 		$Warning.visible = true
+	
+	
 	pass # Replace with function body.
 
 	pass # Replace with function body.

@@ -79,7 +79,8 @@ func _process(delta):
 
 		#Creates a new rule
 		current_rules = helper_functions.make_evil_rule(current_rules)
-		
+		$LowerHUD/WarantUpdate.visible = true
+		$LowerHUD/WarantUpdate/HideWarrantUpdate.start()
 		current_evil_time = 0 
 
 		#$LowerHUD/Evil.text = String(current_rules)
@@ -101,6 +102,7 @@ func _process(delta):
 		pass
 	$LowerHUD/Instructions.add_text(current_rules)
 	$LowerHUD/points.text = str(helper_functions.points)
+	$LowerHUD/strikes.text = str(helper_functions.strikes)
 	
 	pass
 	
@@ -128,4 +130,9 @@ func _on_CursorChange_timeout():
 func _on_PotButton_pressed():
 	print("Pot mode")
 	current_mode = MODES.pot_mode
+	pass # Replace with function body.
+
+
+func _on_HideWarrantUpdate_timeout():
+	$LowerHUD/WarantUpdate.visible = false
 	pass # Replace with function body.
