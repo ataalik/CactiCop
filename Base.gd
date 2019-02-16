@@ -27,29 +27,30 @@ var current_mode
 # Rules for evil cacti
 var current_rules = []
 
-export var base_evil_time = 60
-var current_evil_time
-var rand_evil_offset
+export var base_evil_time = 100 # base seconds for new rule
+var current_evil_time # current evil timer
+var rand_evil_offset  # offset for evil timer 
 
 var Items
 
 var cursor_change = false
 
 var level = 0 #How hard the game is
+var shipped_counter = 0 # Successfully shipped cacti
+export var level_threshold = 10 # how many cacti we need to ship to go to the next level
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	helper_functions = get_node("/root/helper_functions")
 	current_mode = MODES.hand_mode
 	Input.set_custom_mouse_cursor(hand_cursor)
-	for x in range(0,10):
+	for x in range(0,2):
 		current_rules = helper_functions.make_evil_rule(current_rules)
 
 	current_evil_time = 0
 	
 	rand_evil_offset = helper_functions.get_random(15)
 	Items = get_node("Items")
-	pass # Replace with function body.
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -79,8 +80,10 @@ func _process(delta):
 
 		#Creates a new rule
 		current_rules = helper_functions.make_evil_rule(current_rules)
-		
-		current_evil_time = 0 
+		var temp_time = level * 5
+		if(temp_time > 80):
+			temp_time = 80
+		current_evil_time = temp_time
 
 		#$LowerHUD/Evil.text = String(current_rules)
 	# Change back to hand mode when right click is pressed. 

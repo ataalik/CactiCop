@@ -17,8 +17,8 @@ enum STAGES{
 
 # All times in seconds
 # Base water and fertilizer need times
-export var water_time_constant = 5
-export var fertilizer_time_constant = 10
+export var water_time_constant = 30
+export var fertilizer_time_constant = 30
 # Max bound of random value to add to water/fert times
 export var random = 30
 var water_time
@@ -29,7 +29,7 @@ export var max_health = 100
 var current_health
 
 # Growth time needed
-export var growth_time = 20
+export var growth_time = 25
 export var growth_threshold = 80
 var current_growth
 var current_stage
@@ -156,15 +156,13 @@ func water():
 	if(needs_water):
 		needs_water = false
 		$Warning.visible = false
-		water_time = water_time_constant + (randi() % random)
-	pass
+		water_time = water_time_constant + helper_functions.get_random(30) - (root.level * 3)
 
 func fertilize():
 	if(needs_fert):
 		needs_fert = false
 		$Warning.visible = false
-		fertilizer_time = fertilizer_time_constant + (randi() % random)
-	pass
+		fertilizer_time = fertilizer_time_constant + helper_functions.get_random(30) - (root.level * 3)
 
 func grow():
 	current_stage = current_stage + 1
@@ -180,6 +178,7 @@ func ship(area_name):
 	if(evil && area_name == "fake_cacti") || \
 		(!evil && area_name == "real_cacti" && current_stage == STAGES.mature):
 		helper_functions.points += 20
+		root.shipped_counter += 1
 	else:
 		helper_functions.points -= 20
 	queue_free()
