@@ -111,6 +111,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 8, 27 )
 
 [connection signal="area_entered" from="." to="." method="_on_Pot_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Pot_area_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_Pot_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Pot_mouse_exited"]
 [connection signal="timeout" from="MinusPoints" to="." method="_on_MinusPoints_timeout"]
