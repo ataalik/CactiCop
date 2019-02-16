@@ -100,6 +100,8 @@ func _process(delta):
 				
 		pass
 	$LowerHUD/Instructions.add_text(current_rules)
+	$LowerHUD/points.text = str(helper_functions.points)
+	
 	pass
 	
 func _on_WateringButton_pressed():

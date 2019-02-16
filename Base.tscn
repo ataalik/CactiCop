@@ -104,6 +104,22 @@ position = Vector2( 61.0725, 369.195 )
 position = Vector2( 407.546, 381.513 )
 texture = ExtResource( 17 )
 
+[node name="pointsText" type="Label" parent="LowerHUD"]
+margin_left = 155.561
+margin_top = 342.708
+margin_right = 198.561
+margin_bottom = 373.708
+text = "Points
+"
+
+[node name="points" type="Label" parent="LowerHUD"]
+margin_left = 204.153
+margin_top = 343.207
+margin_right = 247.153
+margin_bottom = 374.207
+text = "Points
+"
+
 [node name="Items" type="Node2D" parent="."]
 z_index = 1
 

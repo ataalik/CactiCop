@@ -64,7 +64,7 @@ func _ready():
 	$Hat.modulate = cacti_dict["hat_color"]
 
 	$Hat.set_visible(false)
-
+	
 	mouse_pressed = false
 	dragging = false
 	pass
@@ -108,8 +108,12 @@ func _process(delta):
 		# update need status
 		if(water_time <= 0):
 			needs_water = true 
+			if $MinusPoints.is_stopped():
+				$MinusPoints.start()
 		if(fertilizer_time <0):
 			needs_fert = true
+			if $MinusPoints.is_stopped():
+				$MinusPoints.start()
 			
 		$NeedsFertilizer.visible = needs_fert
 		$NeedsWater.visible = needs_water
@@ -145,12 +149,14 @@ func _input_event(viewport, event, shape_idx):
 func water():
 	if(needs_water):
 		needs_water = false
+		$Warning.visible = false
 		water_time = water_time_constant + (randi() % random)
 	pass
 
 func fertilize():
 	if(needs_fert):
 		needs_fert = false
+		$Warning.visible = false
 		fertilizer_time = fertilizer_time_constant + (randi() % random)
 	pass
 
@@ -191,5 +197,9 @@ func check_evil(current_rules): #Finding if there are Evil Cacti
 				rule["hand_type"] == cacti_dict["hand_type"] && \
 				rule["hat_type"] == cacti_dict["hat_type"]:
 					evil = true
-
-
+					
+func _on_MinusPoints_timeout():
+	if needs_fert or needs_water:
+		helper_functions.points -= 5
+		$Warning.visible = true
+	pass # Replace with function body.
