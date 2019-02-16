@@ -20,7 +20,7 @@ func add_text(dict):
 		page = 0
 	else:
 		var desc_string = ""
-		print("Printing Stuff")
+		
 		if dict[page]["rule_level"] == 0:
 			desc_string = get_color(dict[page]["cactus_color"])
 			desc_string = desc_string + "\n\n\nno hat"

@@ -167,4 +167,6 @@ func ship(area_name):
 func _on_Pot_area_entered(area):
 	if(area.name == "real_cacti" || area.name == "fake_cacti"):
 		ship(area.name)
+
+	#if(area.name == )
 	pass # Replace with function body.
