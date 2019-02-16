@@ -84,6 +84,8 @@ func _process(delta):
 		if(temp_time > 80):
 			temp_time = 80
 		current_evil_time = temp_time
+		$LowerHUD/WarantUpdate.visible = true
+		$LowerHUD/WarantUpdate/HideWarrantUpdate.start()
 
 		#$LowerHUD/Evil.text = String(current_rules)
 	# Change back to hand mode when right click is pressed. 
@@ -104,6 +106,7 @@ func _process(delta):
 		pass
 	$LowerHUD/Instructions.add_text(current_rules)
 	$LowerHUD/points.text = str(helper_functions.points)
+	$LowerHUD/strikes.text = str(helper_functions.strikes)
 	
 	pass
 	
@@ -131,4 +134,9 @@ func _on_CursorChange_timeout():
 func _on_PotButton_pressed():
 	print("Pot mode")
 	current_mode = MODES.pot_mode
+	pass # Replace with function body.
+
+
+func _on_HideWarrantUpdate_timeout():
+	$LowerHUD/WarantUpdate.visible = false
 	pass # Replace with function body.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Base.gd" type="Script" id=1]
 [ext_resource path="res://Pictures/WateringCanArrow.png" type="Texture" id=2]
@@ -17,9 +17,10 @@
 [ext_resource path="res://Pictures/WateringCan.png" type="Texture" id=15]
 [ext_resource path="res://Instructions.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Pictures/Temp/Pot.png" type="Texture" id=17]
-[ext_resource path="res://Pot.tscn" type="PackedScene" id=18]
-[ext_resource path="res://shipping_area.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Incinerator.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Pictures/WarrantsUpdate.png" type="Texture" id=18]
+[ext_resource path="res://Pot.tscn" type="PackedScene" id=19]
+[ext_resource path="res://shipping_area.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Incinerator.tscn" type="PackedScene" id=21]
 
 [node name="Base" type="Node2D"]
 script = ExtResource( 1 )
@@ -29,7 +30,6 @@ water_cursor_clicked = ExtResource( 4 )
 fertilizer_cursor_clicked = ExtResource( 5 )
 hand_cursor = ExtResource( 6 )
 pot_cursor = ExtResource( 7 )
-base_evil_time = 10
 
 [node name="wateringSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 399.258, 193.767 )
@@ -120,25 +120,48 @@ margin_bottom = 374.207
 text = "Points
 "
 
+[node name="Strikes Left" type="Label" parent="LowerHUD"]
+margin_left = 124.703
+margin_top = 369.113
+margin_right = 195.703
+margin_bottom = 400.113
+text = "Strikes Left
+"
+
+[node name="strikes" type="Label" parent="LowerHUD"]
+margin_left = 202.998
+margin_top = 370.086
+margin_right = 245.998
+margin_bottom = 401.086
+text = "Strikes"
+
+[node name="WarantUpdate" type="Sprite" parent="LowerHUD"]
+visible = false
+position = Vector2( 83.0795, 281.004 )
+texture = ExtResource( 18 )
+
+[node name="HideWarrantUpdate" type="Timer" parent="LowerHUD/WarantUpdate"]
+wait_time = 3.0
+one_shot = true
+
 [node name="Items" type="Node2D" parent="."]
 z_index = 1
 
-[node name="Pot" parent="Items" instance=ExtResource( 18 )]
+[node name="Pot" parent="Items" instance=ExtResource( 19 )]
 position = Vector2( 265.545, 202.647 )
-growth_time = 20
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="real_cacti" parent="Node2D" instance=ExtResource( 19 )]
+[node name="real_cacti" parent="Node2D" instance=ExtResource( 20 )]
 position = Vector2( 60, 63.7307 )
 box_label = "Real Cactus"
 
-[node name="fake_cacti" parent="Node2D" instance=ExtResource( 19 )]
+[node name="fake_cacti" parent="Node2D" instance=ExtResource( 20 )]
 visible = false
 position = Vector2( 684.599, 112.122 )
 box_label = "Fake Cactus"
 
-[node name="shipping_area" parent="Node2D" instance=ExtResource( 20 )]
+[node name="shipping_area" parent="Node2D" instance=ExtResource( 21 )]
 position = Vector2( 691.602, 119.685 )
 
 [node name="Light2D" type="Light2D" parent="."]
@@ -156,3 +179,4 @@ __meta__ = {
 [connection signal="pressed" from="LowerHUD/Buttons/WateringButton" to="." method="_on_WateringButton_pressed"]
 [connection signal="pressed" from="LowerHUD/Buttons/PotButton" to="." method="_on_PotButton_pressed"]
 [connection signal="pressed" from="LowerHUD/Buttons/FertilizerButton" to="." method="_on_FertilizerButton_pressed"]
+[connection signal="timeout" from="LowerHUD/WarantUpdate/HideWarrantUpdate" to="." method="_on_HideWarrantUpdate_timeout"]
