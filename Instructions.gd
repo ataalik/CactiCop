@@ -20,14 +20,17 @@ func add_text(dict):
 		page = 0
 	else:
 		var desc_string = ""
+<<<<<<< HEAD
 		
+=======
+>>>>>>> e0ed2651799a0d71c85db7265cca691c11022388
 		if dict[page]["rule_level"] == 0:
 			desc_string = get_color(dict[page]["cactus_color"])
-			desc_string = desc_string + "\n\n\nno hat"
+			desc_string = desc_string + "\n\n\nany hat"
 		if dict[page]["rule_level"] == 1:
 			desc_string = get_color(dict[page]["cactus_color"])
 			desc_string = desc_string + "\n" + str(dict[page]["hand_type"])
-			desc_string = desc_string + "\n\nno hat"
+			desc_string = desc_string + "\n\nany hat"
 		if dict[page]["rule_level"] == 2:
 			desc_string = get_color(dict[page]["cactus_color"])
 			desc_string = desc_string + "\n" + str(dict[page]["hand_type"])
@@ -37,9 +40,9 @@ func add_text(dict):
 	
 func get_color(color):#Converting colors to text
 	"""var green = Color(0,128,0)
-var red = Color(128,0,0)
-var blue = Color(0,0,128)
-var yellow = Color(128,128,0)"""
+	var red = Color(128,0,0)
+	var blue = Color(0,0,128)
+	var yellow = Color(128,128,0)"""
 	if color == Color(0,128,0):
 		return("Green")
 	if color == Color(128,0,0):
@@ -69,7 +72,7 @@ func get_hat(hatNr):#Converting hat number to name
 		return"Top Hat"
 	if hatNr == 8:
 		return"Cowboy hat"
-	if hatNr == 7:
+	if hatNr == 9:
 		return"Taxi Cap"
 	
 	pass

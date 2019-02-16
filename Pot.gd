@@ -48,7 +48,6 @@ var cacti_dict
 func _ready():
 	helper_functions = get_node("/root/helper_functions")
 	root = get_node("/root/Base")
-	
 	water_time = water_time_constant
 	fertilizer_time = fertilizer_time_constant
 	current_growth = 0
@@ -78,6 +77,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# if we don't need something decrement our need cooldown
+
+	var current_rules = root.current_rules
+	check_evil(current_rules)
+
 	if(current_stage != STAGES.mature):
 		if(needs_water == false):
 			water_time = water_time - delta	
@@ -121,7 +124,6 @@ func _process(delta):
 	$Evil.visible = evil
 
 func _input_event(viewport, event, shape_idx):
-	
 	if event is InputEventMouseButton \
     and event.button_index == BUTTON_LEFT \
 		and event.pressed:
@@ -133,11 +135,8 @@ func _input_event(viewport, event, shape_idx):
 		elif(root.current_mode == root.MODES.hand_mode):
 			# Debug
 			dragging = !dragging
-			print("Water time: " + String(water_time) + "\nNeeds water: " + String(needs_water))
-			print("Fertilizer time: " + String(fertilizer_time) + "\nNeeds fert: " + String(needs_fert))
-			print("Current health: " + String(current_health))
-			print("current_growth: " + String(current_growth))
-			print("Current stage: " + String(current_stage))
+			print("Evil?: " + String(evil))
+
 
 func water():
 	if(needs_water):
@@ -152,7 +151,6 @@ func fertilize():
 	pass
 
 func grow():
-	# TODO change sprite
 	current_stage = current_stage + 1
 	cactus_sprite.set_frame(current_stage)
 	if(current_stage == STAGES.mature):
@@ -167,6 +165,26 @@ func ship(area_name):
 func _on_Pot_area_entered(area):
 	if(area.name == "real_cacti" || area.name == "fake_cacti"):
 		ship(area.name)
+<<<<<<< HEAD
 
 	#if(area.name == )
 	pass # Replace with function body.
+=======
+	pass # Replace with function body.
+
+
+func check_evil(current_rules): #Finding if there are Evil Cacti
+		for rule in current_rules:
+			if rule["rule_level"] == 0:
+				if rule["cactus_color"] == cacti_dict["cactus_color"]:
+					evil = true
+			if rule["rule_level"] == 1:
+				if rule["cactus_color"] == cacti_dict["cactus_color"] && \
+				rule["hand_type"] == cacti_dict["hand_type"]:
+					evil = true
+			if rule["rule_level"] == 2:
+				if rule["cactus_color"] == cacti_dict["cactus_color"] && \
+				rule["hand_type"] == cacti_dict["hand_type"] && \
+				rule["hat_type"] == cacti_dict["hat_type"]:
+					evil = true
+>>>>>>> e0ed2651799a0d71c85db7265cca691c11022388
