@@ -9,7 +9,8 @@ var helper_functions
 enum MODES{
   hand_mode,
   water_mode,
-  fertilizer_mode
+  fertilizer_mode,
+  pot_mode
 }
 
 export var water_cursor : Resource
@@ -17,6 +18,7 @@ export var fertilizer_cursor : Resource
 export var water_cursor_clicked : Resource
 export var fertilizer_cursor_clicked : Resource 
 export var hand_cursor : Resource 
+export var pot_cursor : Resource
 
 var potScene = preload("res://Pot.tscn")
 
@@ -65,7 +67,8 @@ func _process(delta):
 			Input.set_custom_mouse_cursor(fertilizer_cursor)
 	elif(current_mode == MODES.hand_mode):
 		Input.set_custom_mouse_cursor(hand_cursor)
-	
+	elif(current_mode == MODES.pot_mode):
+		Input.set_custom_mouse_cursor(pot_cursor)
 	current_evil_time = current_evil_time + delta
 	
 	
@@ -92,29 +95,13 @@ func _process(delta):
 				$wateringSound.play()
 			if current_mode == MODES.fertilizer_mode:
 				$FertilizingSound.play()
+			if current_mode == MODES.pot_mode:
+				add_pot()
+				
 		pass
 	$LowerHUD/Instructions.add_text(current_rules)
 	pass
 	
-func find_evil(): #Finding if there are Evil Cacti
-	#OBS! NEED to not use arrays directly from cacties!
-	var all_cacti = Items.get_children()
-	var temp_cacti = []
-	
-	for cacti in all_cacti:
-		temp_cacti.append(cacti.cacti_dict)
-	for cacti in temp_cacti:
-		for rule in current_rules:
-			pass
-			#if rule["cactus_color"] == cacti["cactus_color"]:
-				#cacti.evil = true
-				#if rule["hand_type"] == cacti["hand_type"]:
-						#cacti.evil = true
-				#		if rule["hat_type"] == cacti["hat_type"]:
-							#cacti.evil = true
-				#			if rule["hat_color"] == cacti["hat_color"]:
-								#cacti.evil = true
-
 func _on_WateringButton_pressed():
 	print("Watering mode")
 	current_mode = MODES.water_mode
@@ -129,15 +116,14 @@ func _on_FertilizerButton_pressed():
 func add_pot():
 	var p = potScene.instance()
 	Items.add_child(p)
-	p.position = get_node("Node2D/new_cacti").position
-	find_evil()
-
-func _on_CactiCreator_timeout():
-	print("Adding pot")
-	add_pot()
-	pass # Replace with function body.
-
+	p.position = get_viewport().get_mouse_position()
 
 func _on_CursorChange_timeout():
 	cursor_change = false
+	pass # Replace with function body.
+
+
+func _on_PotButton_pressed():
+	print("Pot mode")
+	current_mode = MODES.pot_mode
 	pass # Replace with function body.
