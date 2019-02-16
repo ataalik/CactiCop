@@ -136,6 +136,7 @@ func generate_evil(current_rules):
 func shipping_confirmation(area_name,result):
 	print("AreaName ", area_name)
 	print("Result ", result)
+	
 	pass
 	
 	

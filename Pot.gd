@@ -42,6 +42,8 @@ var inside_area = null
 
 var cacti_dict
 
+var thumbScene 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	helper_functions = get_node("/root/helper_functions")
@@ -52,6 +54,7 @@ func _ready():
 	current_health = max_health
 	current_stage = STAGES.seedling
 
+	thumbScene = preload("res://Thumbs.tscn")
 	
 	cacti_dict = helper_functions.generate_cactus()
 
@@ -181,14 +184,19 @@ func ship(area_name):
 	if(evil && area_name == "fake_cacti") || \
 		(!evil && area_name == "real_cacti" && current_stage == STAGES.mature):
 		helper_functions.points += 20
-<<<<<<< HEAD
 		helper_functions.shipping_confirmation(area_name,"good")
-=======
 		root.shipped_counter += 1
->>>>>>> 6fb9d7c6ccabe907cbd2e8b936066f6997107353
+		var t = thumbScene.instance()
+		get_node("/root").add_child(t)
+		t.position = position
+		
 	else:
 		helper_functions.points -= 20
 		helper_functions.strikes -= 1
+		var t = thumbScene.instance()
+		get_node("/root").add_child(t)
+		t.position = position
+		t.good = false
 	queue_free()
 
 func _on_Pot_area_entered(area):
