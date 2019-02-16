@@ -87,7 +87,7 @@ func _process(delta):
 	if Input.is_action_pressed("hand_mode") and current_mode != MODES.hand_mode:
 		current_mode = MODES.hand_mode
 		
-	if Input.is_action_just_released("left_click"):
+	if Input.is_action_just_pressed("left_click"):
 		if not Input.set_custom_mouse_cursor(hand_cursor):
 			cursor_change = true
 			$CursorChange.start()

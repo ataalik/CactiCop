@@ -165,11 +165,10 @@ func ship(area_name):
 func _on_Pot_area_entered(area):
 	if(area.name == "real_cacti" || area.name == "fake_cacti"):
 		ship(area.name)
-<<<<<<< HEAD
 
 	#if(area.name == )
 	pass # Replace with function body.
-=======
+
 	pass # Replace with function body.
 
 
@@ -187,4 +186,3 @@ func check_evil(current_rules): #Finding if there are Evil Cacti
 				rule["hand_type"] == cacti_dict["hand_type"] && \
 				rule["hat_type"] == cacti_dict["hat_type"]:
 					evil = true
->>>>>>> e0ed2651799a0d71c85db7265cca691c11022388

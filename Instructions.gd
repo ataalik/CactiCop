@@ -20,10 +20,7 @@ func add_text(dict):
 		page = 0
 	else:
 		var desc_string = ""
-<<<<<<< HEAD
-		
-=======
->>>>>>> e0ed2651799a0d71c85db7265cca691c11022388
+
 		if dict[page]["rule_level"] == 0:
 			desc_string = get_color(dict[page]["cactus_color"])
 			desc_string = desc_string + "\n\n\nany hat"
