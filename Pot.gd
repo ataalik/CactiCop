@@ -29,7 +29,7 @@ export var max_health = 100
 var current_health
 
 # Growth time needed
-export var growth_time = 3
+export var growth_time = 20
 export var growth_threshold = 80
 var current_growth
 var current_stage
@@ -118,10 +118,12 @@ func _process(delta):
 		$NeedsFertilizer.visible = needs_fert
 		$NeedsWater.visible = needs_water
 	else:
-		if(!dragging && inside_area != null):
-			ship(inside_area)
 		$NeedsFertilizer.visible = needs_fert
 		$NeedsWater.visible = needs_water
+	
+	if(!dragging && inside_area != null):
+		ship(inside_area)
+
 	if(dragging) and helper_functions.pickedPot == self.name:
 		set_position(get_viewport().get_mouse_position())
 	pass
@@ -175,11 +177,12 @@ func ship(area_name):
 	# TODO Do things like adjusting score 
 	# or informing players of wrong decision.
 	# and delete cacti
-	if(evil && area_name == "fake_cacti") || (!evil && area_name == "real_cacti"):
-		print("This is the correct thing to do")
+	if(evil && area_name == "fake_cacti") || \
+		(!evil && area_name == "real_cacti" && current_stage == STAGES.mature):
+		helper_functions.points += 20
 	else:
-		print("This is the wrong thing to do")
-		
+		helper_functions.points -= 20
+	queue_free()
 
 func _on_Pot_area_entered(area):
 	if(area.name == "real_cacti" || area.name == "fake_cacti"):
@@ -205,6 +208,7 @@ func check_evil(current_rules): #Finding if there are Evil Cacti
 			rule["hand_type"] == cacti_dict["hand_type"] && \
 			rule["hat_type"] == cacti_dict["hat_type"]:
 				evil = true
+
 func _on_MinusPoints_timeout():
 	if needs_fert or needs_water:
 		helper_functions.points -= 5
