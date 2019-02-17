@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ThereHeGoes.wav-1552aa92019fd21ae87d9158dce5fd49.sample"
+
+[deps]
+
+source_file="res://Sound/Voice/ThereHeGoes.wav"
+dest_files=[ "res://.import/ThereHeGoes.wav-1552aa92019fd21ae87d9158dce5fd49.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=false
+compress/mode=0

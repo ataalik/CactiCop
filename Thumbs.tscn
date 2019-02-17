@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Thumbs.gd" type="Script" id=1]
 [ext_resource path="res://Pictures/Good.png" type="Texture" id=2]
 [ext_resource path="res://Pictures/Bad.png" type="Texture" id=3]
+[ext_resource path="res://Sound/Voice/ThereHeGoes.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sound/Voice/CheckTheRules.wav" type="AudioStream" id=5]
 
 [node name="Thumbs" type="Node2D"]
 z_index = 200
@@ -17,4 +19,12 @@ texture = ExtResource( 3 )
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="ThereHeGoes" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[node name="CheckTheRules" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="finished" from="ThereHeGoes" to="." method="_on_ThereHeGoes_finished"]
+[connection signal="finished" from="CheckTheRules" to="." method="_on_CheckTheRules_finished"]

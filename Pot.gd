@@ -114,6 +114,7 @@ func _process(delta):
 		# update need status
 		if(water_time <= 0):
 			needs_water = true 
+
 			if $MinusPoints.is_stopped():
 				$MinusPoints.start()
 		if(fertilizer_time <0):
@@ -207,7 +208,8 @@ func die():
 	t.good = false
 	if(!evil):
 		helper_functions.strikes -= 1
-	queue_free()
+	if $NoCactiKilled.playing == false:
+		$NoCactiKilled.play()
 
 func _on_Pot_area_entered(area):
 	if(area.name == "real_cacti" || area.name == "fake_cacti"):
@@ -235,6 +237,9 @@ func check_evil(current_rules): #Finding if there are Evil Cacti
 				evil = true
 
 func _on_MinusPoints_timeout():
+	if helper_functions.get_random(3) == 1:
+		if $DontLeaveHanging.playing == false:
+			$DontLeaveHanging.play()
 	if needs_fert or needs_water:
 		helper_functions.points -= 5
 		$Warning.visible = true
@@ -242,4 +247,9 @@ func _on_MinusPoints_timeout():
 	
 	pass # Replace with function body.
 
+	pass # Replace with function body.
+
+
+func _on_NoCactiKilled_finished():
+	queue_free()
 	pass # Replace with function body.

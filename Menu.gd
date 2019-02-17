@@ -14,6 +14,8 @@ func _ready():
 
 
 func _on_Start_pressed():
+	helper_functions.points = 0
+	helper_functions.strikes = 3
 	get_tree().change_scene("res://Base.tscn")
 	pass # Replace with function body.
 

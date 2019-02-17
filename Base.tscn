@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Base.gd" type="Script" id=1]
 [ext_resource path="res://Pictures/WateringCanArrow.png" type="Texture" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://shipping_area.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Incinerator.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Sound/GuitarSlide.wav" type="AudioStream" id=22]
+[ext_resource path="res://Sound/Voice/NewBoy.wav" type="AudioStream" id=23]
+[ext_resource path="res://Sound/Voice/newRules.wav" type="AudioStream" id=24]
 
 [node name="Base" type="Node2D"]
 script = ExtResource( 1 )
@@ -178,6 +180,14 @@ __meta__ = {
 [node name="Guitar" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 399.574, 193.038 )
 stream = ExtResource( 22 )
+
+[node name="NewBoy" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 399.542, 243.537 )
+stream = ExtResource( 23 )
+
+[node name="NewRules" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 399.212, 210.142 )
+stream = ExtResource( 24 )
 
 [connection signal="timeout" from="CactiCreator" to="." method="_on_CactiCreator_timeout"]
 [connection signal="timeout" from="CursorChange" to="." method="_on_CursorChange_timeout"]

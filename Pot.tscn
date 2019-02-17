@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Pot.gd" type="Script" id=1]
 [ext_resource path="res://Pictures/Temp/Pot.png" type="Texture" id=2]
@@ -27,6 +27,8 @@
 [ext_resource path="res://Pictures/NeedWatering.png" type="Texture" id=25]
 [ext_resource path="res://Pictures/NeedFertilizer.png" type="Texture" id=26]
 [ext_resource path="res://Pictures/Cacti/Dead_cacti.png" type="Texture" id=27]
+[ext_resource path="res://Sound/Voice/DontLeaveHangin.wav" type="AudioStream" id=28]
+[ext_resource path="res://Sound/Voice/NoCactiKilled.wav" type="AudioStream" id=29]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -115,8 +117,15 @@ visible = false
 position = Vector2( 2.39496, -13.1722 )
 texture = ExtResource( 27 )
 
+[node name="DontLeaveHanging" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 28 )
+
+[node name="NoCactiKilled" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 29 )
+
 [connection signal="area_entered" from="." to="." method="_on_Pot_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Pot_area_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_Pot_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Pot_mouse_exited"]
 [connection signal="timeout" from="MinusPoints" to="." method="_on_MinusPoints_timeout"]
+[connection signal="finished" from="NoCactiKilled" to="." method="_on_NoCactiKilled_finished"]

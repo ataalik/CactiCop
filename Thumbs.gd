@@ -13,12 +13,28 @@ func _ready():
 func _process(delta):
 	if good:
 		$Bad.visible = false
+		if helper_functions.get_random(10) == 1:
+			if $ThereHeGoes.playing == false:
+				$ThereHeGoes.play()
 	else:
 		$Good.visible = false
-
+		if helper_functions.get_random(10) == 1:
+			if $CheckTheRules.playing == false:
+				$CheckTheRules.play()
 	pass
 
 
 func _on_Timer_timeout():
+	if $CheckTheRules.playing == false and $ThereHeGoes.playing == false:
+		self.queue_free()
+	pass # Replace with function body.
+
+
+func _on_ThereHeGoes_finished():
+	self.queue_free()
+	pass # Replace with function body.
+
+
+func _on_CheckTheRules_finished():
 	self.queue_free()
 	pass # Replace with function body.

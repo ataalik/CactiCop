@@ -54,7 +54,7 @@ func _ready():
 	Items = get_node("Items")
 	
 	$Guitar.play()
-	
+	$NewBoy.play()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 
@@ -87,6 +87,7 @@ func _process(delta):
 		if(temp_time > 80):
 			temp_time = 80
 		current_evil_time = temp_time
+		$NewRules.play()
 		$LowerHUD/WarantUpdate.visible = true
 		$LowerHUD/WarantUpdate/HideWarrantUpdate.start()
 
