@@ -102,7 +102,7 @@ func _process(delta):
 		if(current_health > max_health):
 			current_health = max_health
 		elif(current_health < 0):
-			current_health = 0
+			die()
 
 		# grow if health bigger then growth threshold
 		if(current_health > growth_threshold):
@@ -197,6 +197,16 @@ func ship(area_name):
 		get_node("/root").add_child(t)
 		t.position = position
 		t.good = false
+	queue_free()
+
+func die():
+	helper_functions.points -= 20
+	var t = thumbScene.instance()
+	get_node("/root").add_child(t)
+	t.position = position
+	t.good = false
+	if(!evil):
+		helper_functions.strikes -= 1
 	queue_free()
 
 func _on_Pot_area_entered(area):
