@@ -111,6 +111,7 @@ func _process(delta):
 	$LowerHUD/Instructions.add_text(current_rules)
 	$LowerHUD/points.text = str(helper_functions.points)
 	$LowerHUD/strikes.text = str(helper_functions.strikes)
+	$LowerHUD/Level.text = str(level)
 	
 	if helper_functions.points < -100 or helper_functions.strikes <= 0:
 		get_tree().change_scene("res://GameOver.tscn")

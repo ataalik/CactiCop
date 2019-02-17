@@ -124,11 +124,18 @@ text = "Points
 "
 
 [node name="Strikes Left" type="Label" parent="LowerHUD"]
-margin_left = 124.703
-margin_top = 369.113
-margin_right = 195.703
-margin_bottom = 400.113
-text = "Strikes Left
+margin_left = 125.182
+margin_top = 369.815
+margin_right = 196.182
+margin_bottom = 388.815
+text = "Strikes Left"
+
+[node name="LevelText" type="Label" parent="LowerHUD"]
+margin_left = 163.484
+margin_top = 393.166
+margin_right = 199.484
+margin_bottom = 424.166
+text = "Level
 "
 
 [node name="strikes" type="Label" parent="LowerHUD"]
@@ -137,6 +144,14 @@ margin_top = 370.086
 margin_right = 245.998
 margin_bottom = 401.086
 text = "Strikes"
+
+[node name="Level" type="Label" parent="LowerHUD"]
+margin_left = 203.71
+margin_top = 392.71
+margin_right = 246.71
+margin_bottom = 423.71
+text = "Level
+"
 
 [node name="WarantUpdate" type="Sprite" parent="LowerHUD"]
 visible = false
