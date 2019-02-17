@@ -162,7 +162,7 @@ position = Vector2( 684.599, 112.122 )
 box_label = "Fake Cactus"
 
 [node name="shipping_area" parent="Node2D" instance=ExtResource( 21 )]
-position = Vector2( 691.602, 119.685 )
+position = Vector2( 692.459, 117.113 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( -1.68929, 27.0021 )

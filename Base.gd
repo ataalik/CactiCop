@@ -22,6 +22,7 @@ export var pot_cursor : Resource
 
 var potScene = preload("res://Pot.tscn")
 
+
 var current_mode
 
 # Rules for evil cacti
