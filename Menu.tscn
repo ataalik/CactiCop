@@ -12,7 +12,7 @@ position = Vector2( 386.89, 216.658 )
 texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 270.846, 213.4 )
+position = Vector2( 272.475, 197.924 )
 scale = Vector2( 0.784914, 0.784914 )
 texture = ExtResource( 3 )
 
@@ -24,11 +24,27 @@ margin_bottom = 214.185
 text = "Start Game"
 
 [node name="Quit" type="Button" parent="."]
-margin_left = 573.226
-margin_top = 239.491
-margin_right = 729.226
-margin_bottom = 287.491
+margin_left = 574.855
+margin_top = 307.909
+margin_right = 730.855
+margin_bottom = 355.909
 text = "Quit"
+
+[node name="Help" type="Button" parent="."]
+margin_left = 574.0
+margin_top = 235.676
+margin_right = 730.0
+margin_bottom = 285.676
+text = "How To play"
+
+[node name="Credits" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 7.33055
+margin_top = 413.768
+margin_right = 295.331
+margin_bottom = 427.768
+text = "Created by Ataalik and Nklobe (Squidishhead)"
 
 [connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Help" to="." method="_on_Help_pressed"]

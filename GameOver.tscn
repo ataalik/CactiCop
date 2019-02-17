@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GameOver.gd" type="Script" id=1]
 [ext_resource path="res://Pictures/Bg.png" type="Texture" id=2]
 [ext_resource path="res://Pictures/Logo.png" type="Texture" id=3]
 [ext_resource path="res://Pictures/GameOver.png" type="Texture" id=4]
+[ext_resource path="res://Sound/Voice/DontCall.wav" type="AudioStream" id=5]
 
 [sub_resource type="Theme" id=1]
 
@@ -52,6 +53,10 @@ align = 1
 [node name="GameOver" type="Sprite" parent="."]
 position = Vector2( 268.986, 86.3528 )
 texture = ExtResource( 4 )
+
+[node name="DontCall" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 391.809, 250.867 )
+stream = ExtResource( 5 )
 
 [connection signal="pressed" from="Menu" to="." method="_on_Menu_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
