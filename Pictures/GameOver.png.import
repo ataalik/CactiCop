@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Logo.png-f8f0a954612faf412ca0c272b007c5f4.stex"
+path="res://.import/GameOver.png-a689c4d9b6ced435fe4fe52c91e9625f.stex"
 
 [deps]
 
-source_file="res://Pictures/Logo.png"
-dest_files=[ "res://.import/Logo.png-f8f0a954612faf412ca0c272b007c5f4.stex" ]
+source_file="res://Pictures/GameOver.png"
+dest_files=[ "res://.import/GameOver.png-a689c4d9b6ced435fe4fe52c91e9625f.stex" ]
 
 [params]
 

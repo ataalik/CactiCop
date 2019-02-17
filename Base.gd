@@ -109,6 +109,9 @@ func _process(delta):
 	$LowerHUD/points.text = str(helper_functions.points)
 	$LowerHUD/strikes.text = str(helper_functions.strikes)
 	
+	if helper_functions.points < -100 or helper_functions.strikes <= 0:
+		get_tree().change_scene("res://GameOver.tscn")
+	
 	pass
 	
 func _on_WateringButton_pressed():
