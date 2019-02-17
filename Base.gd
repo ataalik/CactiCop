@@ -53,6 +53,8 @@ func _ready():
 	rand_evil_offset = helper_functions.get_random(15)
 	Items = get_node("Items")
 	
+	$Guitar.play()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 
